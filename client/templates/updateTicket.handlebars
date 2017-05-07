@@ -1,0 +1,78 @@
+<div class="container col-sm-10">
+    <div class="panel panel-default  form-group row ">
+        <div class="panel-title panel-heading">
+            <h3>File Ticket ID<span id="ticketID">{{ticket.id}}</span></h3><span id="userName">{{ticket.user}}</span>:{{ticket.date}}
+        </div>
+    </div>
+    <div class="form-group row">
+        <textarea type="text" class="form-control" placeholder="Subject/short description" aria-describedby="basic-addon1" id="shortDescription">{{ticket.shortDescription}}</textarea>
+    </div>
+    <div class="form-group row">
+        <textarea class="form-control" style="width:100%" rows="8%" placeholder="Full description" id="lognDescription">{{ticket.longDescription}}</textarea>
+    </div>
+    <div id="select-status" class="dropdown form-group row">
+        <button class="btn btn-default dropdown-toggle" type="button" id="status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span id="status-text">{{ticket.status}}</span> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            {{#each status}}
+                <li><a>{{this}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+    <div id="select-engineer" class="dropdown form-group row">
+        <button class="btn btn-default dropdown-toggle" type="button" id="engineer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-user-id= {{ticket.engineer}}><span id="engineer-text">{{frstname}} {{lsname}}</span> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            {{#each users}}
+                <li><a data-user-id= {{username}}>{{frstname}} {{lsname}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+    <div id="select-urgency" class="dropdown form-group row">
+        <button class="btn btn-default dropdown-toggle" type="button" id="urgency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span id="urgency-text">{{ticket.urgency}}</span> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            {{#each urgency}}
+                <li><a>{{this}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="form-group row">
+        <div class="panel panel-default">
+            <div class="panel-heading panel-comments">
+                <h4>Comments</h4><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#comment">Add Comment</button></div>
+            <!-- Modal -->
+            <div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="comment-label">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close close-comment"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="comment-label">Add Comment</h4>
+                        </div>
+                        <div class="modal-body">
+                            <textarea class="form-control" rows="5" id="comment-text"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default close-comment">Close</button>
+                            <button id="add-comment" type="button" class="btn btn-default">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal -->
+            <div id="comments-panel" class="panel-body">
+                {{#each ticket.comments}}
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3 comment-col1"><span>{{comment.user}}</span><span>{{comment.date}}</span></div>
+                                <div class="col-md-8">{{comment.text}}</div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block " type="submit" id="updateTicket">Update Ticket</button>
+</div>

@@ -1,0 +1,32 @@
+<div class="container col-sm-10">
+    <div class="panel panel-default  form-group row ">
+        <div class="panel-title panel-heading">
+            <h3>File new ticket</h3><span id="userName">{{owner}}</span>:{{date}}
+        </div>
+    </div>
+    <div class="form-group row">
+        <textarea type="text" class="form-control" placeholder="Subject/short description" aria-describedby="basic-addon1" id="shortDescription"></textarea>
+    </div>
+    <div class="form-group row">
+        <textarea class="form-control" style="width:100%" rows="8%" placeholder="Full description" id="lognDescription"></textarea>
+    </div>
+    <div id="select-engineer" class="dropdown form-group row">
+        <button class="btn btn-default dropdown-toggle" type="button" id="engineer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-user-id='select'><span id="engineer-text">Select Engineer</span> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            {{#each users}}
+                <li><a data-user-id= {{username}}>{{frstname}} {{lsname}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+    <div id="select-urgency" class="dropdown form-group row">
+        <button class="btn btn-default dropdown-toggle" type="button" id="urgency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span id="urgency-text">Select Urgency</span> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            {{#each urgency}}
+                <li><a>{{this}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block " type="submit" id="sendNewTicket">Send ticket</button>
+</div>

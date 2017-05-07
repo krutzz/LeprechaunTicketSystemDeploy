@@ -1,0 +1,51 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+            </th>
+        {{#each tickets.[0].table_Tags}}
+            <th>
+                {{@key}}
+            </th>
+        {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each tickets}}
+        <tr id="{{this.table_Tags.id}}">
+            <td>
+                <a class="plus glyphicon glyphicon-plus" aria-hidden="true" role="button" data-toggle="collapse" href="#description{{this.table_Tags.id}}"
+                    aria-expanded="false" aria-controls="description{{this.table_Tags.id}}"/>
+            </td>
+            <td class="id">
+                <a href="#/table{{this.table_Tags.id}}">{{this.table_Tags.id}}</a>
+            </td>
+            {{#each this.table_Tags}}
+                {{#ifNotEqual @key "id"}}
+            <td class="id">
+                {{this}}
+            </td>
+                {{/ifNotEqual}}
+            {{/each}}
+            <tr>
+                <td colspan="{{getColSpan this.table_Tags}}">
+                    <div class="collapse" id="description{{this.table_Tags.id}}">
+                        <div class="descrypt">
+                            Full Description:
+                        </div>
+                        <div class="well">
+                            {{this.descriptions.full_Description}}
+                        </div>
+                        <div class="descrypt">
+                            Additional Comments:
+                        </div>
+                        <div class="well">
+                            {{this.descriptions.additional_Comments}}
+                        </div>
+                    </div>
+                </td>
+            <tr>
+        {{/each}}
+        </tr>
+    </tbody>
+</table>
