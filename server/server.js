@@ -9,9 +9,9 @@ express_App.use(cors());
 
 express_App.use(body_Parser.json());
 
-express_App.use(express.static('../client'));
+express_App.use(express.static('./client'));
 
-express_App.use('/node_modules', express.static('node_modules'));
+express_App.use('/node_modules', express.static('./node_modules'));
 
 const nodemailer = require('nodemailer');
 // create reusable transporter object using the default SMTP transport
@@ -69,7 +69,7 @@ MongoClient.connect('mongodb://admin:admin@ds151060.mlab.com:51060/ticket-system
 
         //popover
         const popoverController = require("../server/controllers/popover-controller.js")(db);
-        
+
         express_App.get("/api/popover", popoverController.get);
 
         // Start the server
